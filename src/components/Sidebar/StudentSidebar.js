@@ -62,6 +62,7 @@ export default function Sidebar() {
                 }
                 key={index}
                 to={"/classroom/" + index}
+                onClick={() => <Redirect to={"/classroom/" + index} />}
               >
                 <i
                   className={
@@ -94,7 +95,7 @@ export default function Sidebar() {
           </button>
           {/* Brand */}
           <Link
-            className='md:block text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0'
+            className='md:block w-6/12 text-left md:pb-2 text-blueGray-600 mr-0 inline-block whitespace-nowrap text-sm uppercase font-bold p-4 px-0'
             to='/'
           >
             Skara
@@ -151,10 +152,7 @@ export default function Sidebar() {
 
             {/* Divider */}
             <hr className='my-4 md:min-w-full' />
-            {/* Heading */}
-            <h6 className='md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline'>
-              Admin Layout Pages
-            </h6>
+
             {/* Navigation */}
 
             <ul className='md:flex-col md:min-w-full flex flex-col list-none'>
@@ -180,80 +178,13 @@ export default function Sidebar() {
                 </Link>
               </li>
 
-              <li className='items-center'>
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to='/admin/settings'
-                >
-                  <i
-                    className={
-                      "fas fa-tools mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/settings") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Settings
-                </Link>
-              </li>
-
-              <li className='items-center'>
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/tables") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to='/admin/tables'
-                >
-                  <i
-                    className={
-                      "fas fa-table mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/tables") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Tables
-                </Link>
-              </li>
-
-              <li className='items-center'>
-                <Link
-                  className={
-                    "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/maps") !== -1
-                      ? "text-lightBlue-500 hover:text-lightBlue-600"
-                      : "text-blueGray-700 hover:text-blueGray-500")
-                  }
-                  to='/admin/maps'
-                >
-                  <i
-                    className={
-                      "fas fa-map-marked mr-2 text-sm " +
-                      (window.location.href.indexOf("/admin/maps") !== -1
-                        ? "opacity-75"
-                        : "text-blueGray-300")
-                    }
-                  ></i>{" "}
-                  Maps
-                </Link>
-              </li>
+              <hr className='my-4 md:min-w-full' />
+              {/* Heading */}
+              <h6 className='md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline'>
+                Classes Enrolled
+              </h6>
             </ul>
             {toshow}
-            {/* Divider */}
-            <ul></ul>
-            <hr className='my-4 md:min-w-full' />
-
-            {/* Divider */}
-            <hr className='my-4 md:min-w-full' />
-
             {/* Divider */}
             <hr className='my-4 md:min-w-full' />
           </div>
@@ -262,3 +193,6 @@ export default function Sidebar() {
     </>
   );
 }
+
+
+  

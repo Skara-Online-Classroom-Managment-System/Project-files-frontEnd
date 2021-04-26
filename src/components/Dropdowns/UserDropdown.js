@@ -1,5 +1,6 @@
 import React from "react";
 import { createPopper } from "@popperjs/core";
+import PersonIcon from '@material-ui/icons/Person';
 
 const UserDropdown = () => {
   // dropdown props
@@ -28,11 +29,7 @@ const UserDropdown = () => {
       >
         <div className="items-center flex">
           <span className="w-12 h-12 text-sm text-white bg-blueGray-200 inline-flex items-center justify-center rounded-full">
-            <img
-              alt="..."
-              className="w-full rounded-full align-middle border-none shadow-lg"
-              src={require("assets/img/team-1-800x800.jpg").default}
-            />
+            <PersonIcon style={{ color: "#334155" }} />
           </span>
         </div>
       </a>

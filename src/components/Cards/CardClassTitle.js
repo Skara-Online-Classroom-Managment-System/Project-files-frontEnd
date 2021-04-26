@@ -1,8 +1,8 @@
 import React from "react";
-import {Link,useParams} from "react-router-dom";
-import axios from "axios";
+import PropTypes from "prop-types";
+import { blueGray } from "tailwindcss/colors";
+
 export default function CardStats({
-  announcementPos,
   statSubtitle,
   statTitle,
   statPercent,
@@ -11,51 +11,27 @@ export default function CardStats({
   statIconName,
   statIconColor,
 }) {
-  const{pos}=useParams();
-  function handleClick(){
-    console.log("handle click of delete announcement ")
-    axios({
-      method:"GET",
-      withCredentials:true,
-      params:{
-        pos:pos,
-        announcementPos:announcementPos
-      },
-      url:"http://localhost:5000/deleteannouncement"
-    }).then((res)=>{
-      console.log("announcement deleted");
-    })
-  }
   return (
     <>
-      <div className='relative flex flex-col min-w-0 break-words bg-white rounded mb-10 xl:mb-0 shadow-lg'>
-        <div className='flex-auto p-4 '>
+      <div className='relative flex flex-col min-w-0 break-words bg-blueGray-700 rounded mb-10 xl:mb-0 shadow-lg'>
+        <div className='flex-auto p-4 mb-2'>
           <div className='flex flex-wrap'>
             <div className='relative w-full pr-4 max-w-full flex-grow flex-1'>
-              <h5 className='text-blueGray-400 uppercase font-bold text-xs'>
-                {statSubtitle}
-              </h5>
-              <span className='font-semibold text-xl text-blueGray-700'>
+              <span className='font-semibold uppercase text-5xl text-white'>
                 {statTitle}
               </span>
             </div>
             <div className='relative w-auto pl-4 flex-initial'>
               <div
                 className={
-                  "text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full " +
-                  statIconColor
+                  "text-bg-blueGray-700 p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full " +
+                  "bg-blueGray-100"
                 }
               >
-                <Link onClick={handleClick} to={"/classroom/"+pos}><i className={statIconName}></i></Link>
+                <i class='fa fa-book' aria-hidden='true'></i>
               </div>
             </div>
           </div>
-          <p className='text-sm text-blueGray-400 mt-4'>
-            <span className={statPercentColor + " mr-2"}>
-              <strong>{statPercent} </strong>
-            </span>
-            <span className='whitespace-nowrap'>{statDescripiron}</span>
-          </p>
         </div>
       </div>
     </>

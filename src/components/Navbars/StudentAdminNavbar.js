@@ -8,8 +8,8 @@ export default function Navbar() {
   const [classCodeEntered, setClassCodeEntered] = React.useState("");
   const [redirect, setRedirect] = React.useState(false);
 
-  function handleAddClass() {
-    console.log("addclass");
+  function handleAddClass(event) {
+    event.preventDefault();
     axios({
       method: "POST",
       withCredentials: true,
@@ -23,6 +23,7 @@ export default function Navbar() {
       if (res.status === 200) {
         setRedirect(true);
       }
+      setRedirect(true);
     });
   }
   if (redirect) {
@@ -35,10 +36,8 @@ export default function Navbar() {
   }
   return (
     <>
-      {/* Navbar */}
       <div className='absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4'>
         <div className='w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4'>
-          {/* Brand */}
           <a
             className='text-white text-sm uppercase hidden lg:inline-block font-semibold'
             href='/admin/dashboard'
@@ -46,7 +45,6 @@ export default function Navbar() {
           >
             Dashboard
           </a>
-          {/* Form */}
           <form
             onSubmit={handleAddClass}
             className='md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3'
@@ -74,7 +72,6 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
-      {/* End Navbar */}
     </>
   );
 }
