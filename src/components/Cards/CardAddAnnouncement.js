@@ -41,7 +41,7 @@ export default function CardStats({ statIconName, statIconColor }) {
                 <form class='w-full' onSubmit={handleSubmit}>
                   <input
                     type='text'
-                    placeholder='Announcement!'
+                    placeholder='Add Announcement'
                     class='w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500'
                     name='newAnnouncement'
                     value={announcement}

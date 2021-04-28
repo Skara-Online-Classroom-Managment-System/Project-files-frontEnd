@@ -13,19 +13,19 @@ export default function Navbar() {
       <nav className='absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4'>
         <div className='w-full mx-autp items-center flex md:flex-nowrap flex-wrap md:px-10 px-4'>
           <Link
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold mx-4'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold mx-4'
             to={"/classroom/" + pos}
           >
             Stream
           </Link>
           <Link
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold mx-4'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold mx-4'
             to={"/classroom/" + pos + "/people"}
           >
             People
           </Link>
           <Link
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold mx-4'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold mx-4'
             to={"/classroom/" + pos + "/teams"}
           >
             Teams

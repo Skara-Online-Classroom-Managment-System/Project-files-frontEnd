@@ -353,7 +353,7 @@ export default function Index() {
               <div className='text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white'>
                 <i className='fas fa-code-branch text-xl'></i>
               </div>
-              <h3 className='text-3xl mb-2 font-semibold leading-normal text-white'>
+              <h3 className='text-3xl mb-2 font-semibold leading-normal text-#F9F9FA'>
                 Collaboration through Github
               </h3>
               

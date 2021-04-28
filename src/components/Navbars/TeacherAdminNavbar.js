@@ -46,7 +46,7 @@ export default function Navbar() {
         <div className='w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4'>
           {/* Brand */}
           <a
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold'
             href='/admin/dashboard'
             onClick={(e) => e.preventDefault()}
           >

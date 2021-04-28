@@ -44,9 +44,9 @@ export default function Admin() {
         {type === 1 ? (
           <>
             <ClassroomSidebar />
-            <div className='relative md:ml-64 bg-blueGray-100'>
+            <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}} >
               <StudentClassroomNavbar />
-              <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
+              <div className='relative bg-#C7ECFA md:pt-32 pb-32 pt-12'>
                 <div className='px-4 md:px-10 mx-auto w-full'>
                   <div>
                     <div className='flex flex-wrap'>
@@ -87,10 +87,10 @@ export default function Admin() {
           <>
             {" "}
             <ClassroomSidebar />
-            <div className='relative md:ml-64 bg-blueGray-100'>
+            <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
               <TeacherClassroomNavbar />
 
-              <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
+              <div className='relative bg-#C7ECFA md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
                 <div className='px-4 md:px-10 mx-auto w-full'>
                   <div className='flex flex-wrap'>
                     <div className='w-full lg:w-11/12 xl:w-11/12 px-4 mb-5 '>

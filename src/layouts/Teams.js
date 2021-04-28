@@ -138,9 +138,9 @@ export default function Admin() {
     toshowteam = (
       <>
         <TeamSidebar />
-        <div className='relative md:ml-64 bg-blueGray-100'>
+        <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
           <ClassroomNavbar />
-          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
+          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
             <div className='container mx-auto px-4'>
               <div>
                 <div className='flex flex-wrap'>
@@ -170,7 +170,7 @@ export default function Admin() {
         </div>
 
         {selection === 1 ? (
-          <div className='px-4 md:px-10 mx-auto w-8/12 -m-24'>
+          <div className='px-4 md:px-10 mx-auto w-8/12 -m-24' >
             <div className='flex flex-wrap justify-center'>
               <div className='w-full xl:w-6/12 mb-12 xl:mb-0 px-4'>
                 <div className='relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700'>
@@ -317,9 +317,9 @@ export default function Admin() {
     toshowteam = (
       <>
         <TeamSidebar />
-        <div className='relative md:ml-64 bg-blueGray-100'>
+        <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
           <ClassroomNavbar />
-          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
+          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
             <div className='container mx-auto px-4'>
               <div>
                 <div className='flex flex-wrap'>
@@ -389,10 +389,10 @@ export default function Admin() {
     toshowteam = (
       <>
         <TeamSidebar />
-        <div className='relative md:ml-64 bg-blueGray-100'>
+        <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
           <ClassroomNavbar />
 
-          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
+          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}}>
             <div className='container mx-auto px-4'>
               <div>
                 {teamData.map((currentTeam, index) => (

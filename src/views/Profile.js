@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import PersonIcon from '@material-ui/icons/Person';
 
 export default function Profile() {
   const [userData, setUserData] = React.useState({ classesEnrolled: [] });
@@ -26,16 +27,12 @@ export default function Profile() {
       <main className='profile-page'>
         <section className='relative block h-500-px'>
           <div
-            className='absolute top-0 w-full h-full bg-center bg-cover'
+            className='absolute top-200 w-full h-full bg-center bg-cover'
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2710&q=80')",
+                "url(" + require("assets/img/loginbg.png").default + ")",
             }}
           >
-            <span
-              id='blackOverlay'
-              className='w-full h-full absolute opacity-50 bg-black'
-            ></span>
           </div>
           <div
             className='top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px'
@@ -66,7 +63,7 @@ export default function Profile() {
                     <div className='relative'>
                       <img
                         alt='...'
-                        src={require("assets/img/team-2-800x800.jpg").default}
+                        src={require("assets/img/porple.png").default}
                         className='shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px'
                       />
                     </div>
