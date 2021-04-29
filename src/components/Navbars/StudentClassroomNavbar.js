@@ -12,20 +12,20 @@ export default function Navbar() {
         <div className='w-full mx-autp items-center flex md:flex-nowrap flex-wrap md:px-10 px-4'>
           {/* Links */}
           <Link
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold mx-4'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold mx-4'
             to={"/classroom/" + pos}
             // onClick={() => (<Redirect to="/admin"/>)}
           >
             Stream
           </Link>
           <Link
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold mx-4'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold mx-4'
             to={"/classroom/" + pos + "/people"}
           >
             People
           </Link>
           <Link
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold mx-4'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold mx-4'
             to={"/classroom/" + pos + "/teams"}
           >
             Teams

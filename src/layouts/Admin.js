@@ -56,7 +56,7 @@ export default function Admin() {
                             statPercentColor='text-emerald-500'
                             statDescripiron='Students Enrolled'
                             statIconName='fas fa-book'
-                            statIconColor='bg-red-500'
+                            statIconColor='bg-emerald-500'
                             key={index}
                           />
                         </Link>

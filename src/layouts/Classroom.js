@@ -72,7 +72,7 @@ export default function Admin() {
                               statPercent={currentAnnouncement.time}
                               statPercentColor='text-emerald-200'
                               statIconName='far fa-calendar-minus'
-                              statIconColor='bg-red-500'
+                              statIconColor='bg-emerald-500'
                             />
                           </div>
                         </div>
@@ -121,7 +121,7 @@ export default function Admin() {
                           statPercent={currentAnnouncement.time}
                           statPercentColor='text-emerald-200'
                           statIconName='fas fa-trash'
-                          statIconColor='bg-red-500'
+                          statIconColor='bg-emerald-500'
                         />
                       </div>
                     </div>

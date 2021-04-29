@@ -124,7 +124,7 @@ export default function Team(props) {
             </div>
           </div>
         </div>
-        <div className='px-4 md:px-10 mx-auto w-full -m-24'>
+        <div className='px-4 mx:auto w-8/12 -m-24'>
           <div className='flex flex-wrap'>
             <div className='w-full xl:w-8/12 mb-12 xl:mb-0 px-4'>
               <div className='relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700'>
