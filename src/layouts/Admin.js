@@ -41,7 +41,7 @@ export default function Admin() {
           <div className='relative md:ml-64 bg-blueGray-100'>
             <StudentAdminNavbar />
             {/* Header */}
-            <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}}>
+            <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
               <div className='px-4 md:px-10 mx-auto w-full'>
                 <div>
                   <div className='flex flex-wrap'>
@@ -55,8 +55,8 @@ export default function Admin() {
                             statPercent={currentClass.studentsEnrolled.length}
                             statPercentColor='text-emerald-500'
                             statDescripiron='Students Enrolled'
-                            statIconName='fas fa-book'
-                            statIconColor='bg-emerald-500'
+                            statIconName='far fa-chart-bar'
+                            statIconColor='bg-red-500'
                             key={index}
                           />
                         </Link>
@@ -75,14 +75,14 @@ export default function Admin() {
             <TeacherAdminNavbar />
             {/* Header */}
 
-            <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}}>
+            <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
               <div className='px-4 md:px-10 mx-auto w-full'>
                 <div>
                   <div className='flex flex-wrap'>
                     {studentData.classesEnrolled.map((currentClass, index) => (
                       <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
                         <Link
-                          to={"/classroom/" + index}
+                          to={"/teacherclassroom/" + currentClass.className}
                         >
                           <CardStats
                             statSubtitle={currentClass.teachers[0].firstName}
@@ -91,8 +91,8 @@ export default function Admin() {
                             statPercent={currentClass.studentsEnrolled.length}
                             statPercentColor='text-emerald-500'
                             statDescripiron='Students Enrolled'
-                            statIconName='fas fa-book'
-                            statIconColor='bg-emerald-500'
+                            statIconName='far fa-chart-bar'
+                            statIconColor='bg-red-500'
                           />
                         </Link>
                       </div>

@@ -82,7 +82,11 @@ export default function Login() {
                       });
                     }}
                   >
-                    
+                    <img
+                      alt='...'
+                      className='w-5 mr-1'
+                      src={require("assets/img/github.svg").default}
+                    />
                     Student
                   </button>
                   <button
@@ -97,7 +101,11 @@ export default function Login() {
                       });
                     }}
                   >
-                    
+                    <img
+                      alt='...'
+                      className='w-5 mr-1'
+                      src={require("assets/img/google.svg").default}
+                    />
                     Teacher
                   </button>
                 </div>
@@ -159,7 +167,16 @@ export default function Login() {
                     />
                   </div>
                   <div>
-                    
+                    <label className='inline-flex items-center cursor-pointer'>
+                      <input
+                        id='customCheckLogin'
+                        type='checkbox'
+                        className='form-checkbox border-0 rounded text-blueGray-700 ml-1 w-5 h-5 ease-linear transition-all duration-150'
+                      />
+                      <span className='ml-2 text-sm font-semibold text-blueGray-600'>
+                        Remember me
+                      </span>
+                    </label>
                   </div>
 
                   <div className='text-center mt-6'>

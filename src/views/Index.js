@@ -47,7 +47,14 @@ export default function Index() {
               <p className='mt-4 text-lg leading-relaxed text-blueGray-500'>
               Skara is a free online tool for teachers and students that helps to make designing,
                sharing, and grading assignments easier. Skara's main goal is to make the process of exchanging 
-               files between teachers and students as simple as possible.
+               files between teachers and students as simple as possible.{" "}
+                <a
+                  href='https://tailwindcss.com/?ref=creativetim'
+                  className='text-blueGray-600'
+                  target='_blank'
+                >
+                 
+                </a>
                 
               </p>
               <div className='mt-12'>
@@ -353,7 +360,7 @@ export default function Index() {
               <div className='text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white'>
                 <i className='fas fa-code-branch text-xl'></i>
               </div>
-              <h3 className='text-3xl mb-2 font-semibold leading-normal text-#F9F9FA'>
+              <h3 className='text-3xl mb-2 font-semibold leading-normal text-white'>
                 Collaboration through Github
               </h3>
               
@@ -362,7 +369,7 @@ export default function Index() {
                 Star!
               </p>
               <a
-                href='https://github.com/Skara-Online-Classroom-Managment-System'
+                href='https://github.com/creativetimofficial/notus-react?ref=nr-index'
                 target='_blank'
                 className='github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg'
               >

@@ -29,7 +29,7 @@ export default function Dashboard() {
           <CardSocialTraffic />
         </div>
       </div> } */}
-      This is the dashboard
+      Hi this is the dashboard.......
     </>
   );     
       </>
