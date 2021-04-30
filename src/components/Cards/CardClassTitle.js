@@ -13,8 +13,8 @@ export default function CardStats({
 }) {
   return (
     <>
-      <div className='relative flex flex-col min-w-0 break-words bg-blueGray-700 rounded mb-10 xl:mb-0 shadow-lg'>
-        <div className='flex-auto p-4 mb-2'>
+      <div className='relative flex flex-col min-w-0 break-words bg-blueGray-700 rounded mx: 0 xl:mb-0 shadow-lg'>
+        <div className='flex-auto p-4 mb-2 '>
           <div className='flex flex-wrap'>
             <div className='relative w-full pr-4 max-w-full flex-grow flex-1'>
               <span className='font-semibold uppercase text-5xl text-white'>

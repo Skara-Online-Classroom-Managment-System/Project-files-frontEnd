@@ -76,7 +76,7 @@ export default function Team(props) {
         statPercentColor='text-emerald-200'
         statDescription='Members'
         statIconName='far fa-calendar-minus'
-        statIconColor='bg-red-500'
+        statIconColor='bg-emerald-500'
       />
     );
   }
@@ -97,7 +97,7 @@ export default function Team(props) {
                     statPercentColor='text-emerald-200'
                     statDescription='Members'
                     statIconName='far fa-calendar-minus'
-                    statIconColor='bg-red-500'
+                    statIconColor='bg-emerald-500'
                   />
                 </div>
               </div>
@@ -110,10 +110,10 @@ export default function Team(props) {
   return (
     <>
       <TeacherSidebar />
-      <div className='relative md:ml-64 bg-blueGray-100'>
+      <div className='relative md:ml-64 bg-blueGray-100'  style = {{backgroundColor : '#C7ECFA'}}>
         <ClassroomNavbar />
 
-        <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
+        <div className='relative md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}}>
           <div className='container mx-auto px-4'>
             <div>
               <div className='flex flex-wrap'>
@@ -124,8 +124,8 @@ export default function Team(props) {
             </div>
           </div>
         </div>
-        <div className='px-4 mx:auto w-8/12 -m-24'>
-          <div className='flex flex-wrap'>
+        <div className='px-4 mmd:ml-64 w-8/12 -m-24'>
+          <div className='flex flex-wrap justify-center'>
             <div className='w-full xl:w-8/12 mb-12 xl:mb-0 px-4'>
               <div className='relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700'>
                 <div className='rounded-t mb-0 px-4 py-3 bg-transparent'>

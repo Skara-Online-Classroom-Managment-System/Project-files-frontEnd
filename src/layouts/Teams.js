@@ -140,7 +140,7 @@ export default function Admin() {
         <TeamSidebar />
         <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
           <ClassroomNavbar />
-          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
+          <div className='relative bg-#C7ECFA-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
             <div className='container mx-auto px-4'>
               <div>
                 <div className='flex flex-wrap'>
@@ -202,7 +202,7 @@ export default function Admin() {
                                         statPercentColor='text-emerald-200'
                                         statDescription='Members'
                                         statIconName='far fa-calendar-minus'
-                                        statIconColor='bg-red-500'
+                                        statIconColor='bg-emerald-500'
                                       />
                                     </div>
                                   </div>
@@ -272,7 +272,7 @@ export default function Admin() {
                                           statPercentColor='text-emerald-200'
                                           statDescription='Members'
                                           statIconName='far fa-calendar-minus'
-                                          statIconColor='bg-red-500'
+                                          statIconColor='bg-emerald-500'
                                         />
                                       </div>
                                     </div>
@@ -319,7 +319,7 @@ export default function Admin() {
         <TeamSidebar />
         <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
           <ClassroomNavbar />
-          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
+          <div className='relative md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
             <div className='container mx-auto px-4'>
               <div>
                 <div className='flex flex-wrap'>
@@ -413,7 +413,7 @@ export default function Admin() {
                           statPercentColor='text-emerald-200'
                           statDescription='Members'
                           statIconName='far fa-calendar-minus'
-                          statIconColor='bg-red-500'
+                          statIconColor='bg-emerald-500'
                         />
                       </div>
                     </div>
