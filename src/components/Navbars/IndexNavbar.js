@@ -8,12 +8,22 @@ import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  
+  const [redirect,setRedirect]=React.useState(false);
   async function handleLogOut() {
     await fetch("http://localhost:5000/logout", {
-      method: "GET",
+      method: "POST",
       credentials: "include",
-    });
+    }).then((res)=>{
+      setRedirect(true)
   }
+    )
+  }
+  if(redirect){
+    console.log("redirect",redirect);
+    window.location.reload();
+  }
+  
 
   return (
     <>
@@ -54,10 +64,7 @@ export default function Navbar(props) {
                       onClick={handleLogOut}
                       className='bg-lightBlue-500 text-white active:bg-lightBlue-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-lg outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3 ease-linear transition-all duration-150'
                       type='button'
-<<<<<<< HEAD
                       style = {{backgroundColor : '#0EA5E9'}}
-=======
->>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
                     >
                       Log Out
                     </button>

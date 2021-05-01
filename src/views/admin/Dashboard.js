@@ -30,12 +30,8 @@ export default function Dashboard() {
           <CardSocialTraffic />
         </div>
       </div> } */}
-<<<<<<< HEAD
       This is the dashboard
 
-=======
-      Hi this is the dashboard.......
->>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
     </>
   );     
       </>

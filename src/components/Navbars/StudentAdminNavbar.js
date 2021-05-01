@@ -9,7 +9,6 @@ export default function Navbar() {
   const [redirect, setRedirect] = React.useState(false);
 
   function handleAddClass() {
-    console.log("addclass");
     axios({
       method: "POST",
       withCredentials: true,
@@ -23,10 +22,11 @@ export default function Navbar() {
       if (res.status === 200) {
         setRedirect(true);
       }
+      setRedirect(true);
     });
   }
   if (redirect) {
-    return <Redirect to='/admin/dashboard' />;
+    window.location.reload();
   }
 
   function handleChange(event) {
@@ -35,20 +35,21 @@ export default function Navbar() {
   }
   return (
     <>
-      {/* Navbar */}
       <div className='absolute top-0 left-0 w-full z-10 bg-transparent md:flex-row md:flex-nowrap md:justify-start flex items-center p-4'>
         <div className='w-full mx-autp items-center flex justify-between md:flex-nowrap flex-wrap md:px-10 px-4'>
-          {/* Brand */}
           <a
-            className='text-white text-sm uppercase hidden lg:inline-block font-semibold'
+            className='text-#334155 text-sm uppercase hidden lg:inline-block font-semibold'
             href='/admin/dashboard'
             onClick={(e) => e.preventDefault()}
           >
             Dashboard
           </a>
-          {/* Form */}
           <form
-            onSubmit={handleAddClass}
+            onSubmit={(event)=>{
+              event.preventDefault();
+              handleAddClass();
+              setClassCodeEntered("");
+            }}
             className='md:flex hidden flex-row flex-wrap items-center lg:ml-auto mr-3'
           >
             <div className='relative flex w-full flex-wrap items-stretch'>
@@ -56,7 +57,11 @@ export default function Navbar() {
                 <i
                   class='fa fa-plus-circle'
                   aria-hidden='true'
-                  onClick={handleAddClass}
+                  onClick={(event)=>{
+              event.preventDefault();
+              handleAddClass();
+              setClassCodeEntered("");
+            }}
                 ></i>
               </span>
               <input
@@ -74,11 +79,7 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
-<<<<<<< HEAD
       
-=======
-      {/* End Navbar */}
->>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
     </>
     
   );

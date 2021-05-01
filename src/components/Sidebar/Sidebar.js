@@ -204,7 +204,7 @@ export default function Sidebar() {
                 >
                   <i
                     className={
-                      "fas fa-map-marked mr-2 text-sm " +
+                      "fas fa-book mr-2 text-sm " +
                       (window.location.href.indexOf("/admin/maps") !== -1
                         ? "opacity-75"
                         : "text-blueGray-300")
@@ -229,7 +229,7 @@ export default function Sidebar() {
                     >
                       <i
                         className={
-                          "fas fa-map-marked mr-2 text-sm " +
+                          "fas fa-book mr-2 text-sm " +
                           (window.location.href.indexOf("/admin/maps") !== -1
                             ? "opacity-75"
                             : "text-blueGray-300")

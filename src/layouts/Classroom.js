@@ -1,25 +1,21 @@
 import React from "react";
-import { Switch, Route, Redirect, Link, useParams } from "react-router-dom";
+import {  useParams, withRouter } from "react-router-dom";
 import axios from "axios";
 
 // components
 
-import StudentAdminNavbar from "components/Navbars/StudentAdminNavbar.js";
-import TeacherAdminNavbar from "components/Navbars/TeacherAdminNavbar.js";
-import StudentSidebar from "components/Sidebar/StudentSidebar.js";
-import TeacherSidebar from "components/Sidebar/TeacherSidebar.js";
-import FooterAdmin from "components/Footers/FooterAdmin.js";
+import StudentClassroomNavbar from "components/Navbars/StudentClassroomNavbar.js";
+import TeacherClassroomNavbar from "components/Navbars/TeacherClassroomNavbar.js";
+import ClassroomSidebar from "components/Sidebar/ClassroomSidebar.js";
+import FooterSmall from "components/Footers/FooterClassroom.js";
 
 // views
 
-import Dashboard from "views/admin/Dashboard.js";
-import Maps from "views/admin/Maps.js";
-import Settings from "views/admin/Settings.js";
-import Tables from "views/admin/Tables.js";
 import CardStats from "components/Cards/CardStats.js";
-import { directive } from "@babel/types";
+import CardClassTitle from "components/Cards/CardClassTitle.js";
+import CardAddAnnouncement from "components/Cards/CardAddAnnouncement.js";
 
-export default function Admin() {
+const Admin=()=> {
   const [classData, setclassData] = React.useState({});
   const [type, setType] = React.useState(null);
   const { pos } = useParams();
@@ -27,149 +23,121 @@ export default function Admin() {
     axios({
       method: "GET",
       withCredentials: true,
-      url: "http://localhost:5000/classroom/",
+      url: "http://localhost:5000/classroom",
       params: {
         pos: pos,
       },
     }).then((res) => {
-      setclassData(res.data.classData);
+      console.log(res.data.classData);
+      setclassData(function (prev) {
+        const a = res.data.classData;
+        a.announcements.reverse();
+        return a;
+      });
       setType(res.data.type);
     });
   }, [classData.length]);
-
+  console.log(classData, "classroom");
   let toshow = null;
-  if (type && classData) {
+  if (type && classData.announcements) {
     toshow = (
       <>
         {type === 1 ? (
           <>
-            {" "}
-            <StudentSidebar />
-            <div className='relative md:ml-64 bg-blueGray-100'>
-              <StudentAdminNavbar />
-              {/* {studentData.classesEnrolled.map((currentClass, index) => (
-                <Link to={"/studentclassroom/" + currentClass.className}>
-                  <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
-                    <div className='px-4 md:px-10 mx-auto w-full'>
-                      <div>
+            <ClassroomSidebar />
+            <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}} >
+              <StudentClassroomNavbar />
+              <div className='relative bg-#C7ECFA md:pt-32 pb-32 pt-12'>
+                <div className='px-4 md:px-10 mx-auto w-full'>
+                  <div>
+                    <div className='flex flex-wrap'>
+                      <div className='w-full lg:w-11/12 xl:w-11/12 px-4 mb-5 '>
+                        <CardClassTitle
+                          statTitle={classData.className}
+                          statArrow='up'
+                          statPercentColor='text-emerald-200'
+                          statIconColor='bg-transparent'
+                        />
+                      </div>
+                    </div>
+                    {classData.announcements.map(
+                      (currentAnnouncement, index) => (
                         <div className='flex flex-wrap'>
-                          <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
+                          <div className='w-full lg:w-11/12 xl:w-11/12 px-4 mb-5 '>
                             <CardStats
-                              statSubtitle={currentClass.teachers[0].firstName}
-                              statTitle={currentClass.className}
+                              statSubtitle={
+                                currentAnnouncement.author.firstName
+                              }
+                              statTitle={currentAnnouncement.text}
                               statArrow='up'
-                              statPercent={currentClass.studentsEnrolled.length}
-                              statPercentColor='text-emerald-500'
-                              statDescripiron='Students Enrolled'
-                              statIconName='far fa-chart-bar'
-                              statIconColor='bg-red-500'
+                              statPercent={currentAnnouncement.time}
+                              statPercentColor='text-emerald-200'
+                              statIconName='far fa-calendar-minus'
+                              statIconColor='bg-emerald-500'
                             />
                           </div>
                         </div>
-                      </div>
-                    </div>
+                      )
+                    )}
                   </div>
-                </Link>
-              ))} */}
-              <div className='px-4 md:px-10 mx-auto w-full -m-24'>
-                <Switch>
-                  <Route path='/admin/dashboard' exact component={Dashboard} />
-                  <Route path='/admin/maps' exact component={Maps} />
-                  <Route path='/admin/settings' exact component={Settings} />
-                  <Route path='/admin/tables' exact component={Tables} />
-                  <Redirect from='/admin' to='/admin/dashboard' />
-                </Switch>
-                <FooterAdmin />
+                </div>
               </div>
-            </div>{" "}
+            </div>
           </>
         ) : (
           <>
             {" "}
-            <TeacherSidebar />
-            <div className='relative md:ml-64 bg-blueGray-100'>
-              <TeacherAdminNavbar />
-              {/* {studentData.classesEnrolled.map((currentClass, index) => (
-                <Link to={"/studentclassroom/" + currentClass.className}>
-                  <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
-                    <div className='px-4 md:px-10 mx-auto w-full'>
-                      <div>
-                        <div className='flex flex-wrap'>
-                          <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
-                            <CardStats
-                              statSubtitle={currentClass.teachers[0].firstName}
-                              statTitle={currentClass.className}
-                              statArrow='up'
-                              statPercent={currentClass.studentsEnrolled.length}
-                              statPercentColor='text-emerald-500'
-                              statDescripiron='Students Enrolled'
-                              statIconName='far fa-chart-bar'
-                              statIconColor='bg-red-500'
-                            />
-                          </div>
-                        </div>
-                      </div>
+            <ClassroomSidebar />
+            <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
+              <TeacherClassroomNavbar />
+
+              <div className='relative bg-#C7ECFA md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
+                <div className='px-4 md:px-10 mx-auto w-full'>
+                  <div className='flex flex-wrap'>
+                    <div className='w-full lg:w-11/12 xl:w-11/12 px-4 mb-5 '>
+                      <CardClassTitle
+                        statTitle={classData.className}
+                        statArrow='up'
+                        statPercentColor='text-emerald-200'
+                        statIconColor='bg-transparent'
+                      />
                     </div>
                   </div>
-                </Link>
-              ))} */}
-              <div className='px-4 md:px-10 mx-auto w-full -m-24'>
-                <Switch>
-                  <Route path='/admin/dashboard' exact component={Dashboard} />
-                  <Route path='/admin/maps' exact component={Maps} />
-                  <Route path='/admin/settings' exact component={Settings} />
-                  <Route path='/admin/tables' exact component={Tables} />
-                  <Redirect from='/admin' to='/admin/dashboard' />
-                </Switch>
-                <FooterAdmin />
+                  <div className='flex flex-wrap'>
+                    <div className='w-full my-4 lg:w-11/12 xl:w-11/12 px-4'>
+                      <CardAddAnnouncement
+                        statIconName='fas fa-plus'
+                        statIconColor='bg-emerald-500'
+                      />
+                    </div>
+                  </div>
+                  {classData.announcements.map((currentAnnouncement, index) => (
+                    <div className='flex flex-wrap'>
+                      <div className='w-full lg:w-11/12 xl:w-11/12 px-4 mb-5 '>
+                        <CardStats
+                          announcementPos={index}
+                          statSubtitle={currentAnnouncement.author.firstName}
+                          statTitle={currentAnnouncement.text}
+                          statArrow='up'
+                          statPercent={currentAnnouncement.time}
+                          statPercentColor='text-emerald-200'
+                          statIconName='fas fa-trash'
+                          statIconColor='bg-emerald-500'
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>{" "}
+            </div>
           </>
         )}
       </>
     );
   }
-  return (
-    <>
-      {toshow}
-      {/* <Sidebar />
-      <div className='relative md:ml-64 bg-blueGray-100'>
-        <AdminNavbar />
-        {studentData.classesEnrolled.map((currentClass, index) => (
-          <Link to={"/studentclassroom/" + currentClass.className}>
-            <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'>
-              <div className='px-4 md:px-10 mx-auto w-full'>
-                <div>
-                  <div className='flex flex-wrap'>
-                    <div className='w-full lg:w-6/12 xl:w-3/12 px-4'>
-                      <CardStats
-                        statSubtitle={currentClass.teachers[0].firstName}
-                        statTitle={currentClass.className}
-                        statArrow='up'
-                        statPercent={currentClass.studentsEnrolled.length}
-                        statPercentColor='text-emerald-500'
-                        statDescripiron='Students Enrolled'
-                        statIconName='far fa-chart-bar'
-                        statIconColor='bg-red-500'
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        ))}
-        <div className='px-4 md:px-10 mx-auto w-full -m-24'>
-          <Switch>
-            <Route path='/admin/dashboard' exact component={Dashboard} />
-            <Route path='/admin/maps' exact component={Maps} />
-            <Route path='/admin/settings' exact component={Settings} />
-            <Route path='/admin/tables' exact component={Tables} />
-            <Redirect from='/admin' to='/admin/dashboard' />
-          </Switch>
-          <FooterAdmin />
-        </div>
-      </div> */}
-    </>
-  );
+  return <>{toshow}
+  <div className="-mt-20">
+        <FooterSmall />
+      </div></>;
 }
+export default withRouter(Admin);

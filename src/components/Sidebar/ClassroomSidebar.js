@@ -6,13 +6,14 @@ import { Redirect, Link,useParams } from "react-router-dom";
 import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const [classCodeEntered, setClassCodeEntered] = React.useState("");
   const [redirect, setRedirect] = React.useState(false);
   const [classData, setclassData] = React.useState({});
   const[type,setType]=React.useState();
   const {pos}=useParams();
+  // const history=useHistory();
   React.useEffect(() => {
     axios({
       method: "GET",
@@ -40,7 +41,7 @@ export default function Sidebar() {
                 }
                 key={index}
                 to={"/classroom/" + index}
-                onClick={() => <Redirect to={"/classroom/" + index} />}
+                onClick={() => {window.location.href="http://localhost:3000/classroom/" + index}}
               >
                 <i
                   className={
@@ -68,6 +69,7 @@ export default function Sidebar() {
           url:"http://localhost:5000/unenroll"
       }).then((res)=>{
           console.log("succesfully unenrolled");
+          setRedirect(true);
       })
   }
 
@@ -81,7 +83,12 @@ export default function Sidebar() {
         url:"http://localhost:5000/delete"
     }).then((res)=>{
         console.log("succesfully deleted");
+        setRedirect(true);
     })
+}
+if(redirect){
+  console.log(redirect,"classroom sidebar");
+  return  <Redirect to="/admin/dashboard"/>
 }
   return (
     <>
@@ -239,7 +246,6 @@ export default function Sidebar() {
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
                   onClick={handleClickToDelete}
-                  to='/admin/dashboard'
                 >
                   <i
                     className={

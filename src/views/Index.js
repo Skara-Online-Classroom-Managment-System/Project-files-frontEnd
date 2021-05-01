@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
@@ -11,11 +11,12 @@ import ViewCarouselIcon from '@material-ui/icons/ViewCarousel';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import Footer from "components/Footers/Footer.js";
 import DevicesIcon from '@material-ui/icons/Devices';
-import { Laptop } from "@material-ui/icons";
+// import { Laptop } from "@material-ui/icons";
 
-export default function Index() {
+const Ind=()=>{
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [userData, setUserData] = React.useState({});
+  const [redirect,setRedirect]=React.useState(false);
   React.useEffect(() => {
     axios({
       method: "GET",
@@ -30,9 +31,17 @@ export default function Index() {
 
   async function handleLogOut() {
     await fetch("http://localhost:5000/logout", {
-      method: "GET",
+      method: "POST",
       credentials: "include",
-    });
+    })
+    .then((res)=>{
+      setRedirect(true)
+  }
+    )
+  }
+  if(redirect){
+    console.log("redirect",redirect);
+    window.location.reload();
   }
   return (
     <>
@@ -47,20 +56,13 @@ export default function Index() {
               <p className='mt-4 text-lg leading-relaxed text-blueGray-500'>
               Skara is a free online tool for teachers and students that helps to make designing,
                sharing, and grading assignments easier. Skara's main goal is to make the process of exchanging 
-               files between teachers and students as simple as possible.{" "}
-                <a
-                  href='https://tailwindcss.com/?ref=creativetim'
-                  className='text-blueGray-600'
-                  target='_blank'
-                >
-                 
-                </a>
+               files between teachers and students as simple as possible.
                 
               </p>
               <div className='mt-12'>
                 {!isLoggedIn ? (
                   <Link
-                    target='_blank'
+                    // target='_blank'
                     className='get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150'
                     to='/auth/login'
                   >
@@ -68,7 +70,7 @@ export default function Index() {
                   </Link>
                 ) : (
                   <Link
-                    target='_blank'
+                    // target='_blank'
                     className='get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-lightBlue-500 active:bg-lightBlue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150'
                     to='/admin/dashboard'
                   >
@@ -78,14 +80,13 @@ export default function Index() {
                 {!isLoggedIn ? (
                   <Link
                     className='github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150'
-                    target='_blank'
+                    // target='_blank'
                     to='/auth/register'
                   >
                     Sign Up
                   </Link>
                 ) : (
                   <Link
-                    target='_self'
                     className='github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150'
                     to='/'
                     onClick={handleLogOut}
@@ -355,21 +356,15 @@ export default function Index() {
               <div className='text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white'>
                 <i className='fas fa-code-branch text-xl'></i>
               </div>
-<<<<<<< HEAD
               <h3 className='text-3xl mb-2 font-semibold leading-normal text-#F9F9FA'>
                 Find us on Github
-=======
-              <h3 className='text-3xl mb-2 font-semibold leading-normal text-white'>
-                Collaboration through Github
->>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
               </h3>
               
               <p className='text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-400'>
                 Skara was made through collaboration on Github
               </p>
               <a
-                href='https://github.com/creativetimofficial/notus-react?ref=nr-index'
-                target='_blank'
+                href='https://github.com/Skara-Online-Classroom-Managment-System'
                 className='github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg'
               >
                 Github
@@ -388,3 +383,4 @@ export default function Index() {
     </>
   );
 }
+export default withRouter(Ind);

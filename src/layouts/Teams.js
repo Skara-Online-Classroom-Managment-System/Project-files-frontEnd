@@ -10,13 +10,15 @@ import TeamSidebar from "components/Sidebar/TeamSidebar.js";
 // views
 import CardStats from "components/Cards/CardStats.js";
 import CardChat from "components/Cards/CardChat.js";
-import CardPortal from "components/Cards/CardPortal.js";
+import FooterSmall from "components/Footers/FooterClassroom.js";
 
 export default function Admin() {
   const [teamData, setTeamData] = React.useState(null);
   const [type, setType] = React.useState(null);
   const [teamName, setTeamName] = React.useState("");
   const [teamCode, setTeamCode] = React.useState("");
+  const [joinTeam,setJoinTeam]=React.useState(false);
+  const [createTeam,setCreateTeam]=React.useState(false);
   const [studentChat, setStudentChat] = React.useState({
     message: "",
   });
@@ -40,7 +42,7 @@ export default function Admin() {
       setTeamData(res.data.teamData);
       setType(res.data.type);
     });
-  }, []);
+  }, [studentChatData, teacherChatData]);
 
   function handleChange(event) {
     const name = event.target.name;
@@ -66,7 +68,11 @@ export default function Admin() {
       },
     }).then((res) => {
       console.log(res.data.msg);
+      setJoinTeam(true);
     });
+  }
+  if(joinTeam){
+    window.location.reload();
   }
 
   function handleCreateTeam(event) {
@@ -81,7 +87,11 @@ export default function Admin() {
       },
     }).then((res) => {
       console.log("ok");
+      setCreateTeam(true);
     });
+  }
+  if(createTeam){
+    window.location.reload();
   }
 
   function handleStudentChat(event) {
@@ -138,13 +148,19 @@ export default function Admin() {
     toshowteam = (
       <>
         <TeamSidebar />
-        <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
+        <div
+          className="relative md:ml-64 bg-blueGray-100"
+          style={{ backgroundColor: "#C7ECFA" }}
+        >
           <ClassroomNavbar />
-          <div className='relative bg-#C7ECFA-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
-            <div className='container mx-auto px-4'>
+          <div
+            className="relative bg-#C7ECFA-600 md:pt-32 pb-32 pt-12"
+            style={{ backgroundColor: "#C7ECFA" }}
+          >
+            <div className="container mx-auto px-4">
               <div>
-                <div className='flex flex-wrap'>
-                  <div className='w-full lg:w-3/12 xl:w-3/12 px-4 mb-5 '>
+                <div className="flex flex-wrap">
+                  <div className="w-full lg:w-3/12 xl:w-3/12 px-4 mb-5 ">
                     <CardStats
                       statSubtitle={teamData.members.reduce(function (
                         total,
@@ -154,15 +170,15 @@ export default function Admin() {
                       },
                       "")}
                       statTitle={teamData.teamName}
-                      statArrow='up'
+                      statArrow="up"
                       statPercent={teamData.members.length}
-                      statPercentColor='text-emerald-200'
-                      statDescription='Members'
-                      statIconName='far fa-calendar-minus'
-                      statIconColor='bg-emerald-500'
+                      statPercentColor="text-emerald-200"
+                      statDescription="Members"
+                      statIconName="far fa-calendar-minus"
+                      statIconColor="bg-emerald-500"
                     />
                   </div>
-                  <div className='w-full xl:w-4/12 px-4'></div>
+                  <div className="w-full xl:w-4/12 px-4"></div>
                 </div>
               </div>
             </div>
@@ -170,39 +186,39 @@ export default function Admin() {
         </div>
 
         {selection === 1 ? (
-          <div className='px-4 mx:auto w-8/12 -m-24' >
-            <div className='flex flex-wrap justify-center'>
-              <div className='w-full xl:w-6/12 mb-12 xl:mb-0 px-4 justify-center'>
-                <div className='relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700'>
-                  <div className='rounded-t mb-0 px-4 py-3 bg-transparent'>
-                    <div className='flex flex-wrap justify-center'>
-                      <div className='relative w-full max-w-full flex-grow flex-1'>
+          <div className="px-4 mx:auto w-8/12 -m-24">
+            <div className="flex flex-wrap justify-center">
+              <div className="w-full xl:w-6/12 mb-12 xl:mb-0 px-4 justify-center">
+                <div className="relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+                  <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+                    <div className="flex flex-wrap justify-center">
+                      <div className="relative w-full max-w-full flex-grow flex-1">
                         <button
-                          className='text-blueGray-100 mb-1 text-xs font-semibold focus:outline-none py-1 rounded'
+                          className="text-blueGray-100 mb-1 text-xs font-semibold focus:outline-none py-1 rounded"
                           onClick={() => setSelection(2)}
                         >
                           Chat with Teacher
                         </button>
-                        <h2 className='text-white text-xl font-semibold'>
+                        <h2 className="text-white text-xl font-semibold">
                           Chat with Team
                         </h2>
-                        <div className='w-full'>
-                          <hr className='my-4 md:min-w-full' />
+                        <div className="w-full">
+                          <hr className="my-4 md:min-w-full" />
                           <div style={{ height: "20rem" }}>
                             <ReactScrollableFeed>
                               {teamData.teamChat.map(function (msg, ind) {
                                 return (
-                                  <div className='flex flex-wrap'>
-                                    <div className='w-auto lg:w-11/12 xl:w-11/12 px-4 mb-5 '>
+                                  <div className="flex flex-wrap">
+                                    <div className="w-auto lg:w-11/12 xl:w-11/12 px-4 mb-5 ">
                                       <CardChat
                                         statSubtitle={msg.author.name}
                                         statTitle={msg.text}
-                                        statArrow='up'
+                                        statArrow="up"
                                         statPercent={msg.time}
-                                        statPercentColor='text-emerald-200'
-                                        statDescription='Members'
-                                        statIconName='far fa-calendar-minus'
-                                        statIconColor='bg-emerald-500'
+                                        statPercentColor="text-emerald-200"
+                                        statDescription="Members"
+                                        statIconName="far fa-calendar-minus"
+                                        statIconColor="bg-emerald-500"
                                       />
                                     </div>
                                   </div>
@@ -210,15 +226,15 @@ export default function Admin() {
                               })}
                             </ReactScrollableFeed>
                           </div>
-                          <div className='mt-4'>
+                          <div className="mt-4">
                             <input
-                              className='w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500'
-                              placeholder='enter message'
+                              className="w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500"
+                              placeholder="enter message"
                               value={studentChat.message}
                               onChange={handleStudentChat}
                             />
                             <button
-                              className='text-white w-full bg-emerald-500 rounded mt-3 p-2'
+                              className="text-white w-full bg-emerald-500 rounded mt-3 p-2"
                               onClick={(event) => {
                                 event.preventDefault();
                                 submitStudentChat();
@@ -240,39 +256,39 @@ export default function Admin() {
           </div>
         ) : (
           <>
-            <div className='px-4 mmd:ml-64 w-8/12 -m-24'>
-              <div className='flex flex-wrap justify-center'>
-                <div className='w-full xl:w-6/12 mb-12 xl:mb-0 px-4'>
-                  <div className='relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700'>
-                    <div className='rounded-t mb-0 px-4 py-3 bg-transparent'>
-                      <div className='flex flex-wrap items-center'>
-                        <div className='relative w-full max-w-full flex-grow flex-1'>
+            <div className="px-4 mmd:ml-64 w-8/12 -m-24">
+              <div className="flex flex-wrap justify-center">
+                <div className="w-full xl:w-6/12 mb-12 xl:mb-0 px-4">
+                  <div className="relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700">
+                    <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
+                      <div className="flex flex-wrap items-center">
+                        <div className="relative w-full max-w-full flex-grow flex-1">
                           <button
-                            className='text-blueGray-100 mb-1 text-xs font-semibold focus:outline-none py-1 rounded'
+                            className="text-blueGray-100 mb-1 text-xs font-semibold focus:outline-none py-1 rounded"
                             onClick={() => setSelection(1)}
                           >
                             Chat with Team
                           </button>
-                          <h2 className='text-white text-xl font-semibold'>
+                          <h2 className="text-white text-xl font-semibold">
                             Chat with Teacher
                           </h2>
-                          <div className='w-full'>
-                            <hr className='my-4 md:min-w-full' />
+                          <div className="w-full">
+                            <hr className="my-4 md:min-w-full" />
                             <div style={{ height: "20rem" }}>
                               <ReactScrollableFeed>
                                 {teamData.teacherChat.map(function (msg, ind) {
                                   return (
-                                    <div className='flex flex-wrap'>
-                                      <div className='w-auto lg:w-11/12 xl:w-11/12 px-4 mb-5 '>
+                                    <div className="flex flex-wrap">
+                                      <div className="w-auto lg:w-11/12 xl:w-11/12 px-4 mb-5 ">
                                         <CardChat
                                           statSubtitle={msg.author.name}
                                           statTitle={msg.text}
-                                          statArrow='up'
+                                          statArrow="up"
                                           statPercent={msg.time}
-                                          statPercentColor='text-emerald-200'
-                                          statDescription='Members'
-                                          statIconName='far fa-calendar-minus'
-                                          statIconColor='bg-emerald-500'
+                                          statPercentColor="text-emerald-200"
+                                          statDescription="Members"
+                                          statIconName="far fa-calendar-minus"
+                                          statIconColor="bg-emerald-500"
                                         />
                                       </div>
                                     </div>
@@ -280,15 +296,15 @@ export default function Admin() {
                                 })}
                               </ReactScrollableFeed>
                             </div>
-                            <div className='mt-4'>
+                            <div className="mt-4">
                               <input
-                                className='w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500'
-                                placeholder='enter message'
+                                className="w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500"
+                                placeholder="enter message"
                                 value={teacherChat.message}
                                 onChange={handleTeacherChat}
                               />
                               <button
-                                className='text-white w-full bg-emerald-500 rounded mt-3 p-2'
+                                className="text-white w-full bg-emerald-500 rounded mt-3 p-2"
                                 onClick={(event) => {
                                   event.preventDefault();
                                   submitTeacherChat();
@@ -310,6 +326,9 @@ export default function Admin() {
             </div>
           </>
         )}
+        <div className="mt-32">
+        <FooterSmall />
+      </div>
       </>
     );
   }
@@ -317,31 +336,37 @@ export default function Admin() {
     toshowteam = (
       <>
         <TeamSidebar />
-        <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
+        <div
+          className="relative md:ml-64 bg-blueGray-100"
+          style={{ backgroundColor: "#C7ECFA" }}
+        >
           <ClassroomNavbar />
-          <div className='relative md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}} >
-            <div className='container mx-auto px-4'>
+          <div
+            className="relative md:pt-32 pb-32 pt-12"
+            style={{ backgroundColor: "#C7ECFA" }}
+          >
+            <div className="container mx-auto px-4">
               <div>
-                <div className='flex flex-wrap'>
-                  <div className='lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center'>
-                    <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg'>
-                      <div className='px-4 py-5 flex-auto'>
-                        <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400'>
-                          <i className='fas fa-award'></i>
+                <div className="flex flex-wrap">
+                  <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                      <div className="px-4 py-5 flex-auto">
+                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+                          <i className="fas fa-award"></i>
                         </div>
-                        <h6 className='text-xl font-semibold'>Create Team</h6>
-                        <form class='w-full mt-3'>
+                        <h6 className="text-xl font-semibold">Create Team</h6>
+                        <form class="w-full mt-3">
                           <input
-                            type='text'
-                            placeholder='Team Name'
-                            className='w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500'
-                            name='teamName'
+                            type="text"
+                            placeholder="Team Name"
+                            className="w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500"
+                            name="teamName"
                             value={teamName}
                             onChange={handleChange}
                           />
                           <button
-                            type='submit'
-                            className='text-white w-full bg-emerald-500 rounded mt-3 p-2'
+                            type="submit"
+                            className="text-white w-full bg-emerald-500 rounded mt-3 p-2"
                             onClick={handleCreateTeam}
                           >
                             CREATE
@@ -350,25 +375,25 @@ export default function Admin() {
                       </div>
                     </div>
                   </div>
-                  <div className='lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center'>
-                    <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg'>
-                      <div className='px-4 py-5 flex-auto'>
-                        <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400'>
-                          <i className='fas fa-award'></i>
+                  <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                      <div className="px-4 py-5 flex-auto">
+                        <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+                          <i className="fas fa-award"></i>
                         </div>
-                        <h6 className='text-xl font-semibold'>Join Team</h6>
-                        <form class='w-full mt-3'>
+                        <h6 className="text-xl font-semibold">Join Team</h6>
+                        <form class="w-full mt-3">
                           <input
-                            type='text'
-                            placeholder='Team Code'
-                            className='w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500'
-                            name='teamCode'
+                            type="text"
+                            placeholder="Team Code"
+                            className="w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500"
+                            name="teamCode"
                             value={teamCode}
                             onChange={handleChange}
                           />
                           <button
-                            type='submit'
-                            className='text-white w-full bg-emerald-500 rounded mt-3 p-2'
+                            type="submit"
+                            className="text-white w-full bg-emerald-500 rounded mt-3 p-2"
                             onClick={handleJoinTeam}
                           >
                             JOIN
@@ -382,6 +407,9 @@ export default function Admin() {
             </div>
           </div>
         </div>
+        <div className="mt-32">
+        <FooterSmall />
+      </div>
       </>
     );
   }
@@ -389,16 +417,22 @@ export default function Admin() {
     toshowteam = (
       <>
         <TeamSidebar />
-        <div className='relative md:ml-64 bg-blueGray-100' style = {{backgroundColor : '#C7ECFA'}}>
+        <div
+          className="relative md:ml-64 bg-blueGray-100"
+          style={{ backgroundColor: "#C7ECFA" }}
+        >
           <ClassroomNavbar />
 
-          <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}}>
-            <div className='container mx-auto px-4'>
+          <div
+            className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12"
+            style={{ backgroundColor: "#C7ECFA" }}
+          >
+            <div className="container mx-auto px-4">
               <div>
                 {teamData.map((currentTeam, index) => (
                   <Link to={"/classroom/" + pos + "/teams/" + index}>
-                    <div className='flex flex-wrap'>
-                      <div className='w-full lg:w-12/12 xl:w-12/12 px-4 mb-5 '>
+                    <div className="flex flex-wrap">
+                      <div className="w-full lg:w-12/12 xl:w-12/12 px-4 mb-5 ">
                         <CardStats
                           statSubtitle={currentTeam.members.reduce(function (
                             total,
@@ -408,12 +442,12 @@ export default function Admin() {
                           },
                           "")}
                           statTitle={currentTeam.teamName}
-                          statArrow='up'
+                          statArrow="up"
                           statPercent={currentTeam.members.length}
-                          statPercentColor='text-emerald-200'
-                          statDescription='Members'
-                          statIconName='far fa-calendar-minus'
-                          statIconColor='bg-emerald-500'
+                          statPercentColor="text-emerald-200"
+                          statDescription="Members"
+                          statIconName="far fa-calendar-minus"
+                          statIconColor="bg-emerald-500"
                         />
                       </div>
                     </div>
@@ -423,10 +457,18 @@ export default function Admin() {
             </div>
           </div>
         </div>
+        <div className="-mt-28">
+        <FooterSmall />
+      </div>
       </>
     );
   }
 
   console.log(teamData, "teamdata");
-  return <>{toshowteam}</>;
+  return (
+    <>
+      {toshowteam}
+      
+    </>
+  );
 }

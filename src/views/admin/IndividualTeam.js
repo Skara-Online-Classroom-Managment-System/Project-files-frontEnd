@@ -31,13 +31,10 @@ export default function Team(props) {
       console.log(res.data.teamDetails);
       setTeamData(res.data.teamDetails);
     });
-  }, [pos, teampos]);
+  }, [pos, teampos,teacherChatData]);
 
   console.log(teamData, "teamsdata");
-  let toshow = null;
-  if (teamData) {
-    toshow = teamData.teamName;
-  }
+  
   function handleTeacherChat(event) {
     event.preventDefault();
     setTeacherChat({

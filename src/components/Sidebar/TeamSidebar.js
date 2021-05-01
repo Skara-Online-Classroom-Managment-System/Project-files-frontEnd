@@ -68,10 +68,15 @@ export default function Sidebar() {
           },
           url:"http://localhost:5000/leaveteam"
       }).then((res)=>{
-          console.log("succesfully unenrolled");
+          console.log("succesfully left");
+          setRedirect(true);
+
       })
   }
-
+if(redirect){
+  console.log("redirectteamsidebar",true);
+  return <Redirect to={'/classroom/'+pos}/>
+}
   function handleClickToDelete(){
     axios({
         method:"GET",
@@ -221,7 +226,7 @@ export default function Sidebar() {
                       : "text-blueGray-700 hover:text-blueGray-500")
                   }
                   onClick={handleClick}
-                  to={'/classroom/'+pos}
+                  
                 >
                   <i
                     className={
