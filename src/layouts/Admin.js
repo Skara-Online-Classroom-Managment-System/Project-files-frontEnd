@@ -15,7 +15,7 @@ import FooterAdmin from "components/Footers/FooterAdmin.js";
 import Dashboard from "views/admin/Dashboard.js";
 import CardStats from "components/Cards/CardStats.js";
 
-const Das= ()=> {
+const Das = () => {
   const [studentData, setstudentData] = React.useState({ classesEnrolled: [] });
   const [type, setType] = React.useState();
   React.useEffect(() => {
@@ -27,9 +27,9 @@ const Das= ()=> {
     }).then((res) => {
       setstudentData(res.data.details);
       setType(res.data.type);
-      console.log(res.data.details,"dashboard");
+      console.log(res.data.details, "dashboard");
     });
-  }, [studentData.length,studentData.classesEnrolled.length]);
+  }, [studentData.length, studentData.classesEnrolled.length]);
   return (
     <>
       {type === 1 ? (
@@ -38,7 +38,10 @@ const Das= ()=> {
           <div className='relative md:ml-64 bg-blueGray-100'>
             <StudentAdminNavbar />
             {/* Header */}
-            <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}}>
+            <div
+              className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'
+              style={{ backgroundColor: "#C7ECFA" }}
+            >
               <div className='px-4 md:px-10 mx-auto w-full'>
                 <div>
                   <div className='flex flex-wrap'>
@@ -47,7 +50,12 @@ const Das= ()=> {
                         <Link to={"/classroom/" + index}>
                           <CardStats
                             statSubtitle={currentClass.teachers[0].firstName}
-                            statTitle={currentClass.className}
+                            statTitle={
+                              currentClass.className.length < 13
+                                ? currentClass.className
+                                : currentClass.className.substring(0, 13) +
+                                  "..."
+                            }
                             statArrow='up'
                             statPercent={currentClass.studentsEnrolled.length}
                             statPercentColor='text-emerald-500'
@@ -72,18 +80,26 @@ const Das= ()=> {
             <TeacherAdminNavbar />
             {/* Header */}
 
-            <div className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12' style = {{backgroundColor : '#C7ECFA'}}>
+            <div
+              className='relative bg-lightBlue-600 md:pt-32 pb-32 pt-12'
+              style={{ backgroundColor: "#C7ECFA" }}
+            >
               <div className='px-4 md:px-10 mx-auto w-full'>
                 <div>
                   <div className='flex flex-wrap'>
                     {studentData.classesEnrolled.map((currentClass, index) => (
                       <div className='w-full lg:w-6/12 xl:w-3/12 px-4 mb-8'>
-                        <Link
-                          to={"/classroom/" + index}
-                        >
+                        <Link to={"/classroom/" + index}>
                           <CardStats
-                            statSubtitle={currentClass.teachers[0].firstName}
-                            statTitle={currentClass.className}
+                            statSubtitle={
+                              "Class Code: " + currentClass.classCode
+                            }
+                            statTitle={
+                              currentClass.className.length < 13
+                                ? currentClass.className
+                                : currentClass.className.substring(0, 13) +
+                                  "..."
+                            }
                             statArrow='up'
                             statPercent={currentClass.studentsEnrolled.length}
                             statPercentColor='text-emerald-500'
@@ -102,15 +118,14 @@ const Das= ()=> {
         </>
       )}
       <div className='px-4 md:px-10 mx-auto w-full -m-24'>
-        
-          <Route path='/admin/dashboard' exact component={Dashboard} />
-          <Route path='/admin' />
-          <Redirect from='/admin' to='/admin/dashboard' />
-       
+        <Route path='/admin/dashboard' exact component={Dashboard} />
+        <Route path='/admin' />
+        <Redirect from='/admin' to='/admin/dashboard' />
+
         <FooterAdmin />
       </div>
       {/* </div> */}
     </>
   );
-}
+};
 export default withRouter(Das);

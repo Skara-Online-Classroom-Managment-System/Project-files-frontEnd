@@ -1,8 +1,8 @@
 import React from "react";
-import {Link,useParams, withRouter} from "react-router-dom";
+import { Link, useParams, withRouter } from "react-router-dom";
 import axios from "axios";
 
-const CardStats=({
+const CardStats = ({
   announcementPos,
   statSubtitle,
   statTitle,
@@ -11,25 +11,25 @@ const CardStats=({
   statDescripiron,
   statIconName,
   statIconColor,
-})=> {
-  const [redirect,setRedirect]=React.useState(false);
-  const{pos}=useParams();
-  function handleClick(){
-    console.log("handle click of delete announcement ")
+}) => {
+  const [redirect, setRedirect] = React.useState(false);
+  const { pos } = useParams();
+  function handleClick() {
+    console.log("handle click of delete announcement ");
     axios({
-      method:"GET",
-      withCredentials:true,
-      params:{
-        pos:pos,
-        announcementPos:announcementPos
+      method: "GET",
+      withCredentials: true,
+      params: {
+        pos: pos,
+        announcementPos: announcementPos,
       },
-      url:"http://localhost:5000/deleteannouncement"
-    }).then((res)=>{
+      url: "http://localhost:5000/deleteannouncement",
+    }).then((res) => {
       console.log("announcement deleted");
       setRedirect(true);
-    })
+    });
   }
-  if(redirect){
+  if (redirect) {
     window.location.reload();
   }
   return (
@@ -52,7 +52,9 @@ const CardStats=({
                   statIconColor
                 }
               >
-                <Link onClick={handleClick} to={"/classroom/"+pos}><i className={statIconName}></i></Link>
+                <Link onClick={handleClick} to={"/classroom/" + pos}>
+                  <i className={statIconName}></i>
+                </Link>
               </div>
             </div>
           </div>
@@ -66,6 +68,5 @@ const CardStats=({
       </div>
     </>
   );
-}
+};
 export default withRouter(CardStats);
-

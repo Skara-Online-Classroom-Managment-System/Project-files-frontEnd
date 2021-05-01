@@ -80,8 +80,9 @@ export default function Sidebar() {
                       : "text-blueGray-300")
                   }
                 ></i>{" "}
-                {item.className}
-                
+                {item.className.length < 17
+                  ? item.className
+                  : item.className.substring(0, 17) + "..."}
               </Link>
             </li>
           );
@@ -195,7 +196,6 @@ export default function Sidebar() {
               </h6>
 
               {toshow}
-
             </ul>
           </div>
         </div>

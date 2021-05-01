@@ -1,14 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import Navbar from "components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
-import PersonIcon from '@material-ui/icons/Person';
+import PersonIcon from "@material-ui/icons/Person";
 
 export default function Profile() {
   const [userData, setUserData] = React.useState({ classesEnrolled: [] });
   const [type, setType] = React.useState();
+  const [redirect, setRedirect] = React.useState(false);
   React.useEffect(() => {
     console.log("dashboard");
     axios({
@@ -21,6 +22,18 @@ export default function Profile() {
       console.log(res.data);
     });
   }, [userData.length]);
+  function handleDelete() {
+    axios({
+      method: "POST",
+      withCredentials: true,
+      url: "http://localhost:5000/deleteprofile",
+    }).then((res) => {
+      setRedirect(true);
+    });
+  }
+  if (redirect) {
+    return <Redirect to='/' />;
+  }
   return (
     <>
       <Navbar transparent />
@@ -32,8 +45,7 @@ export default function Profile() {
               backgroundImage:
                 "url(" + require("assets/img/loginbg.png").default + ")",
             }}
-          >
-          </div>
+          ></div>
           <div
             className='top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden h-70-px'
             style={{ transform: "translateZ(0)" }}
@@ -79,11 +91,12 @@ export default function Profile() {
                         </button>
                       </Link>
                       <button
-                          className='bg-lightBlue-500 active:bg-#C7ECFA-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150'
-                          type='button'
-                        >
-                          Edit Profile
-                        </button>
+                        className='bg-red-500 active:bg-#C7ECFA-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150'
+                        type='button'
+                        onClick={handleDelete}
+                      >
+                        Delete Profile
+                      </button>
                     </div>
                   </div>
                   <div className='w-full lg:w-4/12 px-4 lg:order-1'>
