@@ -288,11 +288,8 @@ export default function Index() {
 
         <div className='justify-center text-center flex flex-wrap mt-24'>
           <div className='w-full md:w-6/12 px-12 md:px-4'>
-            <h2 className='font-semibold text-4xl'>Beautiful Example Pages</h2>
+            <h2 className='font-semibold text-4xl'>A Glimpse into Skara</h2>
             <p className='text-lg leading-relaxed mt-4 mb-4 text-blueGray-500'>
-              Notus React is a completly new product built using our past
-              experience in web templates. Take the examples we made for you and
-              start playing with them.
             </p>
           </div>
         </div>
@@ -307,45 +304,43 @@ export default function Index() {
                   <h5 className='text-xl font-semibold pb-4 text-center'>
                     Login Page
                   </h5>
-                  <Link to='/auth/login'>
                     <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
                       <img
                         alt='...'
                         className='align-middle border-none max-w-full h-auto rounded-lg'
-                        src={require("assets/img/login.jpg").default}
+                        src={require("../../src/assets/img/loginss.png").default}
                       />
                     </div>
-                  </Link>
                 </div>
 
                 <div className='w-full lg:w-4/12 px-4'>
                   <h5 className='text-xl font-semibold pb-4 text-center'>
-                    Profile Page
+                    Dashboard
                   </h5>
-                  <Link to='/profile'>
+                 
                     <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
                       <img
                         alt='...'
                         className='align-middle border-none max-w-full h-auto rounded-lg'
-                        src={require("assets/img/profile.jpg").default}
+                        src={require("../../src/assets/img/dashboardss.png").default}
                       />
                     </div>
-                  </Link>
+                  
                 </div>
 
                 <div className='w-full lg:w-4/12 px-4'>
                   <h5 className='text-xl font-semibold pb-4 text-center'>
-                    Landing Page
+                    Team Chat
                   </h5>
-                  <Link to='/landing'>
+                  
                     <div className='hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150'>
                       <img
                         alt='...'
                         className='align-middle border-none max-w-full h-auto rounded-lg'
-                        src={require("assets/img/landing.jpg").default}
+                        src={require("../../src/assets/img/chatss.png").default}
                       />
                     </div>
-                  </Link>
+                  
                 </div>
               </div>
             </div>
@@ -360,20 +355,24 @@ export default function Index() {
               <div className='text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white'>
                 <i className='fas fa-code-branch text-xl'></i>
               </div>
+<<<<<<< HEAD
+              <h3 className='text-3xl mb-2 font-semibold leading-normal text-#F9F9FA'>
+                Find us on Github
+=======
               <h3 className='text-3xl mb-2 font-semibold leading-normal text-white'>
                 Collaboration through Github
+>>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
               </h3>
               
               <p className='text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-400'>
-                Get it free on Github and please help us spread the news with a
-                Star!
+                Skara was made through collaboration on Github
               </p>
               <a
                 href='https://github.com/creativetimofficial/notus-react?ref=nr-index'
                 target='_blank'
                 className='github-star mt-4 inline-block text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg'
               >
-                Github Star
+                Github
               </a>
             </div>
 

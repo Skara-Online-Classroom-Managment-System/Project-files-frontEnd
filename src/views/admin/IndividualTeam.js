@@ -68,7 +68,7 @@ export default function Team(props) {
     toshowteamcard = (
       <CardStats
         statSubtitle={teamData.members.reduce(function (total, currentMember) {
-          return total + currentMember.firstName + " ";
+          return total + currentMember.firstName + " " + "team code";
         }, "")}
         statTitle={teamData.teamName}
         statArrow='up'

@@ -80,6 +80,42 @@ export default function Sidebar() {
     });
   }, [classData.length]);
 
+<<<<<<< HEAD
+  let toshow = null;
+  if (classData.classesEnrolled) {
+    toshow = (
+      <ul>
+        {classData.classesEnrolled.map((item, index) => {
+          return (
+            <li className='items-center'>
+              <Link
+                className={
+                  "text-xs uppercase py-3 font-bold block " +
+                  (window.location.href.indexOf("/admin/maps") !== -1
+                    ? "text-lightBlue-500 hover:text-lightBlue-600"
+                    : "text-blueGray-700 hover:text-blueGray-500")
+                }
+                to={"/classroom/" + index}
+                onClick={() => <Redirect to={"/classroom/" + index} />}
+              >
+                <i
+                  className={
+                    "fas fa-book mr-2 text-sm mb-2 " +
+                    (window.location.href.indexOf("/admin/maps") !== -1
+                      ? "opacity-75"
+                      : "text-blueGray-300")
+                  }
+                ></i>{" "}
+                {item.className}
+                
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+=======
 
 let toshow=null;
 if(classData.classesEnrolled){
@@ -112,6 +148,7 @@ if(classData.classesEnrolled){
   </ul>
 }
 
+>>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
 
   return (
     <>
@@ -182,11 +219,16 @@ if(classData.classesEnrolled){
               </div>
             </form>
             {/* Divider */}
+<<<<<<< HEAD
+            <hr className='my-4 md:min-w-full' />
+
+=======
             <hr className="my-4 md:min-w-full" />
             {/* Heading */}
             <h6 className="md:min-w-full text-blueGray-500 text-xs uppercase font-bold block pt-1 pb-4 no-underline">
               Admin Layout Pages
             </h6>
+>>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
             {/* Navigation */}
 
             <ul className="md:flex-col md:min-w-full flex flex-col list-none">

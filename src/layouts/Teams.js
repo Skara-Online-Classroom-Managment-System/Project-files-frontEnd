@@ -172,10 +172,10 @@ export default function Admin() {
         {selection === 1 ? (
           <div className='px-4 mx:auto w-8/12 -m-24' >
             <div className='flex flex-wrap justify-center'>
-              <div className='w-full xl:w-6/12 mb-12 xl:mb-0 px-4'>
+              <div className='w-full xl:w-6/12 mb-12 xl:mb-0 px-4 justify-center'>
                 <div className='relative flex flex-col h-full min-w-0 break-words w-full mb-6 shadow-lg rounded bg-blueGray-700'>
                   <div className='rounded-t mb-0 px-4 py-3 bg-transparent'>
-                    <div className='flex flex-wrap items-center'>
+                    <div className='flex flex-wrap justify-center'>
                       <div className='relative w-full max-w-full flex-grow flex-1'>
                         <button
                           className='text-blueGray-100 mb-1 text-xs font-semibold focus:outline-none py-1 rounded'

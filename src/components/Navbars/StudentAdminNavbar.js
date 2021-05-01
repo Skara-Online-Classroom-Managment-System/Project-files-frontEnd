@@ -74,7 +74,12 @@ export default function Navbar() {
           </ul>
         </div>
       </div>
+<<<<<<< HEAD
+      
+=======
       {/* End Navbar */}
+>>>>>>> cf629fe6b4798e91b170dc46b0ec023dd1528849
     </>
+    
   );
 }
