@@ -1,10 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import {Alert} from "react-bootstrap";
 
 export default function Register() {
   const [selection, setSelection] = React.useState(1);
   const [details, setDetails] = React.useState({});
-  const [redirect, setRedirect] = React.useState(false);
+  const [redirect, setRedirect] = React.useState(0);
+  const [msg, setmsg] = React.useState({
+    message: "",
+  });
   function handleClick(event) {
     const name = event.target.name;
     console.log(details);
@@ -30,10 +34,17 @@ export default function Register() {
         }),
       });
       const content = await response.json();
-      if (response.status === 201) {
-        console.log(content);
+      if (response.status === 200) {
+        setRedirect(1);
+        setmsg({
+          message: content.msg,
+        });
+        console.log(msg);
       } else {
-        setRedirect(true);
+        setRedirect(2);setmsg({
+          message: content.msg,
+        });
+        console.log(content);
       }
     } else {
       const response = await fetch("http://localhost:5000/teachersignup", {
@@ -44,14 +55,37 @@ export default function Register() {
         }),
       });
       const content = await response.json();
-      if (response.status === 201) {
-        console.log(content);
+      if (response.status === 200) {
+        setRedirect(1);
+        setmsg({
+          message: content.msg,
+        });
+        console.log(msg);
       } else {
-        setRedirect(true);
+        setRedirect(2);setmsg({
+          message: content.msg,
+        });
+        console.log(content);
       }
     }
   }
-  if (redirect) {
+  function showAlert() {
+    if (redirect === 2) {
+      console.log(redirect, "login");
+      return (
+        <Alert
+          className="text-red-500 font-mono bg-red-200 rounded mt-3  px-2 py-1 text-sm "
+          variant="danger"
+          onClose={() => {
+            setRedirect(0);
+          }}
+          dismissible
+        >{"  "}{msg.message}
+        </Alert>
+      );
+    }
+  }
+  if (redirect===1) {
     return <Redirect to='/auth/login' />;
   }
   return (
@@ -104,6 +138,7 @@ export default function Register() {
                       name='firstName'
                       value={details.firstName || ""}
                       onChange={handleChange}
+                      required
                     />
                   </div>
                   <div className='relative w-full mb-3'>
@@ -120,6 +155,7 @@ export default function Register() {
                       name='lastName'
                       value={details.lastName || ""}
                       onChange={handleChange}
+                      required
                     />
                   </div>
 
@@ -138,6 +174,7 @@ export default function Register() {
                         name='username'
                         value={details.username || ""}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   ) : (
@@ -149,12 +186,13 @@ export default function Register() {
                         Email
                       </label>
                       <input
-                        type='text'
+                        type='email'
                         className='border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150'
                         placeholder='Email'
                         name='username'
                         value={details.username || ""}
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   )}
@@ -173,7 +211,9 @@ export default function Register() {
                       name='password'
                       value={details.password || ""}
                       onChange={handleChange}
+                      required
                     />
+                    {showAlert()}
                   </div>
 
                   <div>
@@ -184,7 +224,11 @@ export default function Register() {
                     <button
                       className='bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150'
                       type='button'
-                      onClick={handleSubmit}
+                      onClick={(event)=>{
+                        event.preventDefault()
+                        handleSubmit()
+                        setDetails("")
+                        }}
                     >
                       Create Account
                     </button>

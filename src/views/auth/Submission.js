@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Redirect, Link } from "react-router-dom";
 
 export default function Login() {
@@ -11,9 +10,8 @@ export default function Login() {
   });
 
   async function handleSubmit() {
-    const queryParam = selection === 1 ? "student" : "teacher";
     const response = await fetch(
-      "http://localhost:5000/" + queryParam + "submission",
+      "http://localhost:5000/submission",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

@@ -5,6 +5,7 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.css";
 
+
 // layouts
 
 import Admin from "layouts/Admin.js";
@@ -20,9 +21,9 @@ import Index from "views/Index.js";
 import Dashboard from "views/admin/Dashboard.js";
 import IndividualTeam from "views/admin/IndividualTeam.js";
 
-const app = () => {
-  return (
-    <Switch>
+const App = () => {
+  return (<>
+  <Switch>
       {/* add routes with layouts */}
       <Route path='/admin' component={Admin} />
       <Route path='/auth' component={Auth} />
@@ -41,8 +42,9 @@ const app = () => {
       />
       {/* add redirect for first page */}
       <Redirect from='*' to='/' />
-    </Switch>
+      </Switch>
+  </>
   );
 };
 
-export default withRouter(app);
+export default withRouter(App);

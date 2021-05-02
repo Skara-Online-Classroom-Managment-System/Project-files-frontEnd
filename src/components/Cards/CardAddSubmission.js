@@ -2,8 +2,9 @@ import React from "react";
 import { useParams, Redirect } from "react-router-dom";
 import axios from "axios";
 
-export default function CardStats({ statIconName, statIconColor }) {
-  const [announcement, setAnnouncement] = React.useState("");
+export default function CardStats({ statIconName, statIconColor,submitted }) {
+  console.log(submitted);
+  const [announcement, setAnnouncement] = React.useState(submitted);
   const [redirect, setRedirect] = React.useState(false);
   function handleChange(event) {
     const val = event.target.value;
@@ -15,11 +16,12 @@ export default function CardStats({ statIconName, statIconColor }) {
     console.log("plus was clicked");
     axios({
       method: "POST",
-      data: {
-        announcement: announcement,
-      },
       withCredentials: true,
-      url: "http://localhost:5000/createAnnouncement/" + pos,
+      url: "http://localhost:5000/submitproject",
+      data: {
+        pos:pos,
+        projectLink: announcement,
+      }
     }).then((res) => {
       setRedirect(true);
     });
@@ -38,9 +40,10 @@ export default function CardStats({ statIconName, statIconColor }) {
               </span>
               <div class='flex items-center mt-3 mb-3'>
                 <form class='w-full' onSubmit={handleSubmit}>
+                {console.log(announcement,"announcement")}
                   <input
                     type='text'
-                    placeholder='Enter URL'
+                    placeholder={announcement===""?'Enter URL':{announcement}}
                     class='w-full pr-10 pl-4 py-2 border rounded-lg text-gray-700 outline-none focus:border-emerald-500'
                     name='newAnnouncement'
                     value={announcement}
@@ -66,4 +69,3 @@ export default function CardStats({ statIconName, statIconColor }) {
     </>
   );
 }
-

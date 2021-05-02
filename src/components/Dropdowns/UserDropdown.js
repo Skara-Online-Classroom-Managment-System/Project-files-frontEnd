@@ -29,7 +29,7 @@ const UserDropdown = () => {
     
   }
   if(redirect){
-    return <Redirect to="/"/>
+    window.location.href="/";
   }
   return (
     <>

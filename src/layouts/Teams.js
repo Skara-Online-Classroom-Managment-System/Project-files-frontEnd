@@ -6,6 +6,7 @@ import ReactScrollableFeed from "react-scrollable-feed";
 
 import ClassroomNavbar from "components/Navbars/TeacherClassroomNavbar.js";
 import TeamSidebar from "components/Sidebar/TeamSidebar.js";
+import {Alert} from "react-bootstrap";
 
 // views
 import CardStats from "components/Cards/CardStats.js";
@@ -31,6 +32,9 @@ export default function Admin() {
   const [teacherChatData, setTeacherChatData] = React.useState({});
   const [selection, setSelection] = React.useState(1);
   const { pos } = useParams();
+  const [show, setShow] = React.useState(false);
+  const [msg,setMsg]=React.useState("")
+
   React.useEffect(() => {
     axios({
       method: "GET",
@@ -58,8 +62,7 @@ export default function Admin() {
     }
   }
 
-  function handleJoinTeam(event) {
-    event.preventDefault();
+  function handleJoinTeam() {
     axios({
       method: "POST",
       withCredentials: true,
@@ -71,9 +74,11 @@ export default function Admin() {
     }).then((res) => {
       console.log(res.data.msg);
       setJoinTeam(true);
+      setShow(true)
+      setMsg(res.data.result)
     });
   }
-  if (joinTeam) {
+  if (joinTeam&&msg==="successfully joined team") {
     window.location.reload();
   }
 
@@ -93,6 +98,7 @@ export default function Admin() {
     });
   }
   if (createTeam) {
+    console.log(createTeam,"vasdbasnd")
     window.location.reload();
   }
 
@@ -124,7 +130,6 @@ export default function Admin() {
     setTeacherChat({
       message: event.target.value,
     });
-    // setChat(data);
   }
 
   function submitTeacherChat() {
@@ -144,12 +149,30 @@ export default function Admin() {
     });
   }
 
+  function closeAlert(){
+    setShow(false);
+  }
+  function showAlert() {
+    console.log(show,"show")
+    console.log(msg);
+    if (show) {
+      return (
+        <Alert
+          className="text-red-500 font-mono bg-red-200 rounded mt-3  px-2 py-1 text-sm "
+          variant="danger"
+          onClose={closeAlert}
+          dismissible
+        >{"  "}{msg}
+        </Alert>);
+    }
+  }
+  console.log(teamData,"teamdatateams");
   let toshowteam = null;
   console.log(type, "type");
   if (type === 1 && teamData) {
     toshowteam = (
       <>
-        <TeamSidebar />
+        <TeamSidebar className="z-50" />
         <div
           className='relative md:ml-64 bg-blueGray-100'
           style={{ backgroundColor: "#C7ECFA" }}
@@ -187,6 +210,7 @@ export default function Admin() {
                   <CardAddSubmission
                   statIconName='fas fa-plus'
                   statIconColor='bg-emerald-500'
+                  submitted={teamData.projectLink}
                   />
                   </div>
                   
@@ -347,6 +371,7 @@ export default function Admin() {
   if (type === 1 && !teamData) {
     toshowteam = (
       <>
+      
         <TeamSidebar />
         <div
           className='relative md:ml-64 bg-blueGray-100'
@@ -394,6 +419,7 @@ export default function Admin() {
                           <i className='fas fa-award'></i>
                         </div>
                         <h6 className='text-xl font-semibold'>Join Team</h6>
+                        
                         <form class='w-full mt-3'>
                           <input
                             type='text'
@@ -402,11 +428,15 @@ export default function Admin() {
                             name='teamCode'
                             value={teamCode}
                             onChange={handleChange}
-                          />
+                          />{showAlert()}
                           <button
                             type='submit'
                             className='text-white w-full bg-emerald-500 rounded mt-3 p-2'
-                            onClick={handleJoinTeam}
+                            onClick={(event)=>{
+                              event.preventDefault();
+                              handleJoinTeam();
+                              setTeamCode("")
+                              }}
                           >
                             JOIN
                           </button>
@@ -469,9 +499,7 @@ export default function Admin() {
             </div>
           </div>
         </div>
-        <div className='-mt-28'>
-          <FooterSmall />
-        </div>
+
       </>
     );
   }

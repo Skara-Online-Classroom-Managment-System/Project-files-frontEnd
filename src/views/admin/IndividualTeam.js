@@ -5,9 +5,10 @@ import { useParams } from "react-router-dom";
 
 import ClassroomNavbar from "components/Navbars/TeacherClassroomNavbar.js";
 import TeacherSidebar from "components/Sidebar/TeacherSidebar.js";
-import CardStats from "components/Cards/CardStats.js";
+// import CardStats from "components/Cards/CardStats.js";
 import CardChat from "components/Cards/CardChat.js";
-import ScrollableFeed from "react-scrollable-feed";
+
+import CardShowSubmission from "components/Cards/CardShowSubmission.js";
 
 export default function Team(props) {
   const [teamData, setTeamData] = React.useState(null);
@@ -63,13 +64,13 @@ export default function Team(props) {
   let toshowteamcard = null;
   if (teamData) {
     toshowteamcard = (
-      <CardStats
+      <CardShowSubmission
         statSubtitle={teamData.members.reduce(function (total, currentMember) {
           return total + currentMember.firstName + " " ;
         }, "")}
         statTitle={teamData.teamName}
         statArrow='up'
-        statPercent={teamData.members.length}
+        statPercent={teamData.projectLink}
         statPercentColor='text-emerald-200'
         statDescription='Members'
         statIconName='far fa-calendar-minus'
@@ -118,6 +119,7 @@ export default function Team(props) {
                   {toshowteamcard}
                 </div>
               </div>
+              
             </div>
           </div>
         </div>
