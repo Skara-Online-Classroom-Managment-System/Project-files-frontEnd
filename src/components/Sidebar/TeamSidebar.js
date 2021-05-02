@@ -219,6 +219,9 @@ export default function Sidebar() {
             <ul className='md:flex-col md:min-w-full flex flex-col list-none'>
               <li className='items-center'>
                 {type === 1 ? (
+                  <div>
+                  
+                  
                   <Link
                     className={
                       "text-xs uppercase py-3 font-bold block " +
@@ -238,6 +241,7 @@ export default function Sidebar() {
                     ></i>{" "}
                     Leave Team
                   </Link>
+                  </div>
                 ) : (
                   <Link
                     className={

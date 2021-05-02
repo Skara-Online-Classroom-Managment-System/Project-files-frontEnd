@@ -91,19 +91,19 @@ const Das = () => {
                       <div className='w-full lg:w-6/12 xl:w-3/12 px-4 mb-8'>
                         <Link to={"/classroom/" + index}>
                           <CardStats
-                            statSubtitle={
-                              "Class Code: " + currentClass.classCode
-                            }
                             statTitle={
                               currentClass.className.length < 13
                                 ? currentClass.className
                                 : currentClass.className.substring(0, 13) +
                                   "..."
                             }
+                            statSubtitle={
+                              "Students Enrolled: " + currentClass.studentsEnrolled.length
+                            }
                             statArrow='up'
-                            statPercent={currentClass.studentsEnrolled.length}
+                            statPercent={currentClass.classCode}
                             statPercentColor='text-emerald-500'
-                            statDescripiron='Students Enrolled'
+                            statDescripiron='Class Code'
                             statIconName='fas fa-book'
                             statIconColor='bg-emerald-500'
                           />

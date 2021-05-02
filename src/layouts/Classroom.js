@@ -137,7 +137,6 @@ const Admin=()=> {
   }
   return <>{toshow}
   <div className="-mt-20">
-        <FooterSmall />
       </div></>;
 }
 export default withRouter(Admin);

@@ -11,6 +11,8 @@ import TeamSidebar from "components/Sidebar/TeamSidebar.js";
 import CardStats from "components/Cards/CardStats.js";
 import CardChat from "components/Cards/CardChat.js";
 import FooterSmall from "components/Footers/FooterClassroom.js";
+import CardAddSubmission from "components/Cards/CardAddSubmission.js";
+
 
 export default function Admin() {
   const [teamData, setTeamData] = React.useState(null);
@@ -177,8 +179,18 @@ export default function Admin() {
                       statIconName='far fa-calendar-minus'
                       statIconColor='bg-emerald-500'
                     />
+                    
                   </div>
-                  <div className='w-full xl:w-4/12 px-4'></div>
+                  </div>
+                  <div className='flex flex-wrap'>
+                  <div className='w-full lg:w-12/12 xl:w-12/12 px-4 mb-5 '>
+                  <CardAddSubmission
+                  statIconName='fas fa-plus'
+                  statIconColor='bg-emerald-500'
+                  />
+                  </div>
+                  
+                  
                 </div>
               </div>
             </div>
